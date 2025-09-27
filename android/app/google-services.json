@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "465876456943",
+    "project_id": "ebra-cf544",
+    "storage_bucket": "ebra-cf544.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:465876456943:android:ab4f67ed9219f62d28121a",
+        "android_client_info": {
+          "package_name": "com.example.ebra"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBvHLd61mMP73rleoDZ8CMb1PMsPyQ5Zt0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
