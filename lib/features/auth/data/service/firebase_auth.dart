@@ -11,13 +11,16 @@ import 'otp_service.dart';
  * FirebaseService class
  * handles user authentication with Firebase
  * supports email/password, Google, and Facebook sign-in methods
+ * rest the password 
  * manages user data in Firestore
  * saves user session data locally using LocalStorageService
  * throws CustomException on errors with appropriate messages
  */
 class FirebaseService {
   final FirebaseAuth _auth = FirebaseAuth.instance;
+
   final FirebaseFirestore firestore = FirebaseFirestore.instance;
+
   Future<User> createUserWithEmailAndPassword({
     required String email,
     required String password,
