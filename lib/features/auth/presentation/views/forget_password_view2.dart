@@ -49,29 +49,6 @@ class _ForgetPasswordView2State extends State<ForgetPasswordView2> {
                   ),
                   const SizedBox(height: sectionSpace),
                   const Text(
-                    "كلمة المرور الحالية",
-                    style: AppTextStyles.style20BoldBlack,
-                  ),
-                  const SizedBox(height: itemSpace),
-                  CustomTextField(
-                    hintText: "كلمة المرور",
-                    obscureText: obscureText,
-                    suffix: IconButton(
-                      onPressed: () {
-                        setState(() {
-                          obscureText = !obscureText;
-                        });
-                      },
-                      icon: Icon(
-                        obscureText == false
-                            ? Icons.visibility_rounded
-                            : Icons.visibility_off_rounded,
-                        color: Color(greyColor),
-                      ),
-                    ),
-                  ),
-                  const SizedBox(height: itemSpace),
-                  const Text(
                     "كلمة المرور الجديدة",
                     style: AppTextStyles.style20BoldBlack,
                   ),
