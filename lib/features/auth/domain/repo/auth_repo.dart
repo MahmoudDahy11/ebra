@@ -30,4 +30,8 @@ abstract class FirebaseAuthRepo {
    * returns Either a CustomFailure or Unit
    */
   Future<Either<CustomFailure, Unit>> signOut();
+
+  Future<Either<CustomFailure, Unit>> forgetPassword({
+    required String newPassword,
+  });
 }

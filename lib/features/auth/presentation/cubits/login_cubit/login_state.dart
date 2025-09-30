@@ -1,11 +1,11 @@
 part of 'login_cubit.dart';
 
-
 /*
  * LoginState class
  * base state class for LoginCubit
  * has subclasses for initial, loading, success, and failure states
  */
+
 @immutable
 sealed class LoginState {}
 

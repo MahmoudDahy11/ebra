@@ -1,19 +1,31 @@
 import 'dart:async';
-
+import 'package:ebra/features/auth/presentation/views/widgets/custom_pin_code_text_field.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:ebra/core/constant/app_const.dart';
 import 'package:ebra/core/helper/show_snak_bar.dart';
 import 'package:ebra/core/style/app_text_style.dart';
 import 'package:ebra/core/widgets/custom_button.dart';
-import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
-import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_state.dart';
-import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:go_router/go_router.dart';
-import 'widgets/custom_pin_code_text_field.dart';
+import 'package:ebra/features/auth/presentation/cubits/otp_for_create_account_cubit/otp_for_create_account_cubit.dart';
+import 'package:ebra/features/auth/presentation/cubits/otp_for_create_account_cubit/otp_for_create_account_state.dart';
 
 class OtpView extends StatefulWidget {
-  const OtpView({super.key});
+  final String title;
+  final String description;
+  final String uid;
+  final String email;
+  final VoidCallback onVerified; // هتتنده بعد نجاح التحقق
+  final VoidCallback? onBack; // لو عايز تتحكم في زرار الرجوع
+
+  const OtpView({
+    super.key,
+    required this.title,
+    required this.description,
+    required this.uid,
+    required this.email,
+    required this.onVerified,
+    this.onBack,
+  });
 
   @override
   State<OtpView> createState() => _OtpViewState();
@@ -54,13 +66,10 @@ class _OtpViewState extends State<OtpView> {
 
   @override
   Widget build(BuildContext context) {
-    final uid = FirebaseAuth.instance.currentUser!.uid;
-    final email = FirebaseAuth.instance.currentUser!.email!;
-
-    return BlocConsumer<OtpCubit, OtpState>(
+    return BlocConsumer<OtpForCreateAccountCubit, OtpForCreateAccountState>(
       listener: (context, state) {
         if (state is OtpVerified) {
-          context.go(signupSuccess);
+          widget.onVerified();
         } else if (state is OtpError) {
           showSnakBar(context, state.message, isError: true);
         } else if (state is OtpSent) {
@@ -84,18 +93,19 @@ class _OtpViewState extends State<OtpView> {
                         alignment: Alignment.centerRight,
                         padding: EdgeInsets.zero,
                         onPressed: () {
-                          context.go(signupView);
+                          if (widget.onBack != null) {
+                            widget.onBack!();
+                          } else {
+                            Navigator.pop(context);
+                          }
                         },
-                        icon: Icon(Icons.arrow_back),
+                        icon: const Icon(Icons.arrow_back),
                       ),
                       const SizedBox(height: itemSpace),
-                      const Text(
-                        "إنشاء حساب جديد",
-                        style: AppTextStyles.style30BoldBlack,
-                      ),
+                      Text(widget.title, style: AppTextStyles.style30BoldBlack),
                       const SizedBox(height: itemSpace),
-                      const Text(
-                        "أدخل الرمز التعريفي المرسل الى البريد الإلكتروني",
+                      Text(
+                        widget.description,
                         style: AppTextStyles.style16RegularGrey,
                       ),
                       const SizedBox(height: sectionSpace),
@@ -110,14 +120,16 @@ class _OtpViewState extends State<OtpView> {
                           GestureDetector(
                             onTap: secondsLeft == 0
                                 ? () {
-                                    context.read<OtpCubit>().sendOtp(
-                                      uid: uid,
-                                      email: email,
-                                    );
+                                    context
+                                        .read<OtpForCreateAccountCubit>()
+                                        .sendOtp(
+                                          uid: widget.uid,
+                                          email: widget.email,
+                                        );
                                   }
                                 : null,
                             child: Text(
-                              "أعد ارسال الرمز التعريفى ؟",
+                              "أعد ارسال الرمز ؟",
                               style: TextStyle(
                                 color: secondsLeft == 0
                                     ? Colors.blue
@@ -136,9 +148,10 @@ class _OtpViewState extends State<OtpView> {
                       CustomButton(
                         text: "تأكيد",
                         onTap: () {
-                          BlocProvider.of<OtpCubit>(
-                            context,
-                          ).verifyOtp(uid: uid, enteredOtp: enteredOtp);
+                          context.read<OtpForCreateAccountCubit>().verifyOtp(
+                            uid: widget.uid,
+                            enteredOtp: enteredOtp,
+                          );
                         },
                       ),
                       const SizedBox(height: sectionSpace - 10),
