@@ -2,7 +2,7 @@ import 'package:ebra/core/constant/app_const.dart';
 import 'package:ebra/core/service/get_it.dart';
 import 'package:ebra/core/style/app_text_style.dart';
 import 'package:ebra/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
-import 'package:ebra/features/auth/presentation/cubits/otp_for_create_account_cubit/otp_for_create_account_cubit.dart';
+import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
 import 'package:ebra/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
 import 'package:ebra/features/auth/presentation/views/forget_password_view.dart';
 import 'package:ebra/features/auth/presentation/views/forget_password_view2.dart';
@@ -60,7 +60,7 @@ class AppRoutes {
         path: otpForCreateAccountView,
         name: 'otpForCreateAccountView',
         builder: (context, state) => BlocProvider(
-          create: (context) => getIt<OtpForCreateAccountCubit>(),
+          create: (context) => getIt<OtpCubit>(),
           child: const OtpForCreateAccountView(),
         ),
       ),

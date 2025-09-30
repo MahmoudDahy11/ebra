@@ -6,8 +6,8 @@ import 'package:ebra/core/constant/app_const.dart';
 import 'package:ebra/core/helper/show_snak_bar.dart';
 import 'package:ebra/core/style/app_text_style.dart';
 import 'package:ebra/core/widgets/custom_button.dart';
-import 'package:ebra/features/auth/presentation/cubits/otp_for_create_account_cubit/otp_for_create_account_cubit.dart';
-import 'package:ebra/features/auth/presentation/cubits/otp_for_create_account_cubit/otp_for_create_account_state.dart';
+import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
+import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_state.dart';
 
 class OtpView extends StatefulWidget {
   final String title;
@@ -66,7 +66,7 @@ class _OtpViewState extends State<OtpView> {
 
   @override
   Widget build(BuildContext context) {
-    return BlocConsumer<OtpForCreateAccountCubit, OtpForCreateAccountState>(
+    return BlocConsumer<OtpCubit, OtpState>(
       listener: (context, state) {
         if (state is OtpVerified) {
           widget.onVerified();
@@ -120,12 +120,10 @@ class _OtpViewState extends State<OtpView> {
                           GestureDetector(
                             onTap: secondsLeft == 0
                                 ? () {
-                                    context
-                                        .read<OtpForCreateAccountCubit>()
-                                        .sendOtp(
-                                          uid: widget.uid,
-                                          email: widget.email,
-                                        );
+                                    context.read<OtpCubit>().sendOtp(
+                                      uid: widget.uid,
+                                      email: widget.email,
+                                    );
                                   }
                                 : null,
                             child: Text(
@@ -148,7 +146,7 @@ class _OtpViewState extends State<OtpView> {
                       CustomButton(
                         text: "تأكيد",
                         onTap: () {
-                          context.read<OtpForCreateAccountCubit>().verifyOtp(
+                          context.read<OtpCubit>().verifyOtp(
                             uid: widget.uid,
                             enteredOtp: enteredOtp,
                           );

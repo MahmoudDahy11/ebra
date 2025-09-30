@@ -1,11 +1,11 @@
 import 'package:ebra/features/auth/domain/repo/otp_repo.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
-import 'otp_for_create_account_state.dart';
+import 'otp_state.dart';
 
-class OtpForCreateAccountCubit extends Cubit<OtpForCreateAccountState> {
+class OtpCubit extends Cubit<OtpState> {
   final OtpRepository otpRepository;
 
-  OtpForCreateAccountCubit(this.otpRepository) : super(OtpInitial());
+  OtpCubit(this.otpRepository) : super(OtpInitial());
 
   Future<void> sendOtp({required String uid, required String email}) async {
     emit(OtpLoading());
