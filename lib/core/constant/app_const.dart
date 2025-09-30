@@ -17,5 +17,5 @@ const String loginView = '/loginView';
 const String signupView = '/signupView';
 const String forgetPasswordView = '/forgetPasswordView';
 const String forgetPasswordView2 = '/forgetPasswordView2';
-const String otpView = '/otpView';
+const String otpForCreateAccountView = '/otpForCreateAccountView';
 const String signupSuccess = '/signupSuccess';

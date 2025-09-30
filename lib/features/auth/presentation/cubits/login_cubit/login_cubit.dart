@@ -3,8 +3,7 @@ import 'package:ebra/features/auth/domain/entity/user_entity.dart';
 import 'package:ebra/features/auth/domain/repo/auth_repo.dart';
 import 'package:meta/meta.dart';
 
-part 'login_state.dart';
-
+part '../login_cubit/login_state.dart';
 
 /*
  * LoginCubit class

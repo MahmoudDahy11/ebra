@@ -26,7 +26,7 @@ class RegisterSuccess extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      context.go(otpView);
+                      context.go(otpForCreateAccountView);
                     },
                     icon: Icon(Icons.arrow_back),
                   ),
