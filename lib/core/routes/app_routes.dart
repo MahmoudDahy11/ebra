@@ -7,7 +7,7 @@ import 'package:ebra/features/auth/presentation/cubits/signup_cubit/signup_cubit
 import 'package:ebra/features/auth/presentation/views/forget_password_view.dart';
 import 'package:ebra/features/auth/presentation/views/forget_password_view2.dart';
 import 'package:ebra/features/auth/presentation/views/login_view.dart';
-import 'package:ebra/features/auth/presentation/views/otp_view.dart';
+import 'package:ebra/features/auth/presentation/views/otp_for_create_account_view.dart';
 import 'package:ebra/features/auth/presentation/views/signup_success.dart';
 import 'package:ebra/features/auth/presentation/views/signup_view.dart';
 import 'package:ebra/features/on_boarding/views/root.dart';
@@ -57,11 +57,11 @@ class AppRoutes {
         builder: (context, state) => const ForgetPasswordView2(),
       ),
       GoRoute(
-        path: otpView,
-        name: 'otpView',
+        path: otpForCreateAccountView,
+        name: 'otpForCreateAccountView',
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<OtpCubit>(),
-          child: const OtpView(),
+          child: const OtpForCreateAccountView(),
         ),
       ),
       GoRoute(

@@ -30,7 +30,7 @@ class _SignupViewState extends State<SignupView> {
           showDialogMessage(context, desc: state.errMessage);
         } else if (state is SignupSuccess) {
           showSnakBar(context, "Email created successfully");
-          context.go(otpView);
+          context.go(otpForCreateAccountView);
         }
       },
       builder: (context, state) {

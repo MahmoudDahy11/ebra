@@ -77,4 +77,16 @@ class FirebaseAuthRepoImplement extends FirebaseAuthRepo {
       return left(CustomFailure(errMessage: ex.errMessage));
     }
   }
+
+  @override
+  Future<Either<CustomFailure, Unit>> forgetPassword({
+    required String newPassword,
+  }) async {
+    try {
+      await _firebaseService.forgetPassword(newPassword: newPassword);
+      return right(unit);
+    } catch (e) {
+      return left(CustomFailure(errMessage: e.toString()));
+    }
+  }
 }

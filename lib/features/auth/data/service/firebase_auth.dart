@@ -151,4 +151,25 @@ class FirebaseService {
       throw CustomException(errMessage: 'Sign out failed: ${e.toString()}');
     }
   }
+
+  Future<void> forgetPassword({required String newPassword}) async {
+    try {
+      final user = _auth.currentUser;
+
+      if (user == null) {
+        throw CustomException(errMessage: 'User is not authenticated.');
+      }
+
+      final otpService = OtpService();
+      final otp = otpService.generateOtp();
+      await otpService.saveOtp(user.uid, otp);
+      await otpService.sendOtpToEmail(user.email!, otp);
+      log("🔑 OTP sent to ${user.email}");
+
+      // update password
+      await user.updatePassword(newPassword);
+    } catch (e) {
+      throw CustomException(errMessage: e.toString());
+    }
+  }
 }
