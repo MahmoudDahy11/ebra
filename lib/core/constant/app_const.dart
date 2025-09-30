@@ -7,7 +7,7 @@ const double sectionSpace = 40;
 const double itemSpace = 10;
 const double pagePadding = 16;
 
-const String fontFamily = "Cairo";
+const String fontFamily = "MarkaziText";
 const String boxName = 'userBox';
 
 const String splash = '/';
