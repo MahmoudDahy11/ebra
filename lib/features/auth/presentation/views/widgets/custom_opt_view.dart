@@ -8,6 +8,7 @@ import 'package:ebra/core/style/app_text_style.dart';
 import 'package:ebra/core/widgets/custom_button.dart';
 import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
 import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_state.dart';
+import 'package:go_router/go_router.dart';
 
 class OtpView extends StatefulWidget {
   final String title;
@@ -96,7 +97,7 @@ class _OtpViewState extends State<OtpView> {
                           if (widget.onBack != null) {
                             widget.onBack!();
                           } else {
-                            Navigator.pop(context);
+                            context.go(signupView);
                           }
                         },
                         icon: const Icon(Icons.arrow_back),
@@ -130,7 +131,7 @@ class _OtpViewState extends State<OtpView> {
                               "أعد ارسال الرمز ؟",
                               style: TextStyle(
                                 color: secondsLeft == 0
-                                    ? Colors.blue
+                                    ? Color(primaryColor)
                                     : Colors.grey,
                                 fontSize: 16,
                               ),

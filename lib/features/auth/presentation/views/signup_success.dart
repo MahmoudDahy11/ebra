@@ -26,7 +26,8 @@ class RegisterSuccess extends StatelessWidget {
                     alignment: Alignment.centerRight,
                     padding: EdgeInsets.zero,
                     onPressed: () {
-                      context.go(otpForCreateAccountView);
+                      // context.go(otpForCreateAccountView);
+                      // showSnakBar(context, "أهلا بك في ابره");
                     },
                     icon: Icon(Icons.arrow_back),
                   ),
