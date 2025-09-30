@@ -8,12 +8,11 @@ import 'package:ebra/core/style/app_text_style.dart';
 import 'package:ebra/core/widgets/custom_button.dart';
 import 'package:ebra/core/widgets/custom_text_field.dart';
 import 'package:ebra/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
+import 'package:ebra/features/auth/presentation/views/widgets/custom_check_box.dart';
+import 'package:ebra/features/auth/presentation/views/widgets/custom_create_account.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:go_router/go_router.dart';
-
-import 'widgets/custom_check_box.dart';
-import 'widgets/custom_create_account.dart';
 
 class LoginView extends StatefulWidget {
   const LoginView({super.key});
