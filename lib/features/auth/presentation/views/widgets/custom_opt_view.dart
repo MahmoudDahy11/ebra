@@ -14,8 +14,8 @@ class OtpView extends StatefulWidget {
   final String description;
   final String uid;
   final String email;
-  final VoidCallback onVerified; // هتتنده بعد نجاح التحقق
-  final VoidCallback? onBack; // لو عايز تتحكم في زرار الرجوع
+  final VoidCallback onVerified;
+  final VoidCallback? onBack;
 
   const OtpView({
     super.key,

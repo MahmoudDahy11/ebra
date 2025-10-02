@@ -1,6 +1,7 @@
 import 'package:ebra/core/constant/app_const.dart';
 import 'package:ebra/core/service/get_it.dart';
 import 'package:ebra/core/style/app_text_style.dart';
+import 'package:ebra/features/auth/presentation/cubits/forget_password_cubit/forget_password_cubit.dart';
 import 'package:ebra/features/auth/presentation/cubits/login_cubit/login_cubit.dart';
 import 'package:ebra/features/auth/presentation/cubits/otp_cubit/otp_cubit.dart';
 import 'package:ebra/features/auth/presentation/cubits/signup_cubit/signup_cubit.dart';
@@ -8,6 +9,7 @@ import 'package:ebra/features/auth/presentation/views/forget_password_view.dart'
 import 'package:ebra/features/auth/presentation/views/forget_password_view2.dart';
 import 'package:ebra/features/auth/presentation/views/login_view.dart';
 import 'package:ebra/features/auth/presentation/views/otp_for_create_account_view.dart';
+import 'package:ebra/features/auth/presentation/views/otp_for_forget_password_view.dart';
 import 'package:ebra/features/auth/presentation/views/signup_success.dart';
 import 'package:ebra/features/auth/presentation/views/signup_view.dart';
 import 'package:ebra/features/on_boarding/views/root.dart';
@@ -49,12 +51,18 @@ class AppRoutes {
       GoRoute(
         path: forgetPasswordView,
         name: 'forgetPasswordView',
-        builder: (context, state) => const ForgetPasswordView(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<OtpCubit>(),
+          child: const ForgetPasswordView(),
+        ),
       ),
       GoRoute(
         path: forgetPasswordView2,
         name: 'forgetPasswordView2',
-        builder: (context, state) => const ForgetPasswordView2(),
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<ForgetPasswordCubit>(),
+          child: const ForgetPasswordView2(),
+        ),
       ),
       GoRoute(
         path: otpForCreateAccountView,
@@ -62,6 +70,14 @@ class AppRoutes {
         builder: (context, state) => BlocProvider(
           create: (context) => getIt<OtpCubit>(),
           child: const OtpForCreateAccountView(),
+        ),
+      ),
+      GoRoute(
+        path: otpForForgetPasswordView,
+        name: 'otpForForgetPasswordView',
+        builder: (context, state) => BlocProvider(
+          create: (context) => getIt<OtpCubit>(),
+          child: const OtpForForgetPasswordView(),
         ),
       ),
       GoRoute(
