@@ -19,3 +19,4 @@ const String forgetPasswordView = '/forgetPasswordView';
 const String forgetPasswordView2 = '/forgetPasswordView2';
 const String otpForCreateAccountView = '/otpForCreateAccountView';
 const String signupSuccess = '/signupSuccess';
+const String otpForForgetPasswordView = '/otpForForgetPasswordView';
