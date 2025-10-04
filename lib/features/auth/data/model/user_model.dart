@@ -2,7 +2,6 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../domain/entity/user_entity.dart';
 
-
 /*
  * UserModel class
  * represents a user model with email, name, and uid
@@ -47,7 +46,7 @@ class UserModel {
    * Factory constructor to create UserModel from JSON
    * maps JSON properties to UserModel properties
    */
-  factory UserModel.fromJson(json) {
+  factory UserModel.fromJson(Map<String, dynamic> json) {
     return UserModel(
       uId: json['uid'] as String,
       name: json['name'] as String? ?? '',
@@ -58,7 +57,7 @@ class UserModel {
    * Method to convert UserModel to JSON
    * maps UserModel properties to JSON properties
    */
-  toJson() {
+  Map<String, String> toJson() {
     return {'uid': uId, 'name': name, 'email': email};
   }
 }
