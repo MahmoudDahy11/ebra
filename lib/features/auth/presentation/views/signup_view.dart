@@ -18,7 +18,7 @@ class SignupView extends StatefulWidget {
 }
 
 class _SignupViewState extends State<SignupView> {
-  bool obscureText = false;
+  bool obscureText = true;
   String? email, password, fullName, newPassword;
   GlobalKey<FormState> formKey = GlobalKey();
   @override

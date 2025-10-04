@@ -160,14 +160,21 @@ class FirebaseService {
         throw CustomException(errMessage: 'User is not authenticated.');
       }
 
-      final otpService = OtpService();
-      final otp = otpService.generateOtp();
-      await otpService.saveOtp(user.uid, otp);
-      await otpService.sendOtpToEmail(user.email!, otp);
-      log("🔑 OTP sent to ${user.email}");
-
       // update password
       await user.updatePassword(newPassword);
+
+      await firestore.collection('users').doc(user.uid).set({
+        'uid': user.uid,
+        'email': user.email,
+        'name': user.displayName ?? '',
+        'passwordChangedAt': FieldValue.serverTimestamp(),
+      }, SetOptions(merge: true));
+
+      await LocalStorageService.saveUserData(
+        uid: user.uid,
+        email: user.email!,
+        name: user.displayName,
+      );
     } catch (e) {
       throw CustomException(errMessage: e.toString());
     }
